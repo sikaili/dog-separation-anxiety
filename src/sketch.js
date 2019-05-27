@@ -82,7 +82,7 @@ function draw() {
   if (vol > 0.09 && noplay) {
     background(255);
     let song = songs[Math.floor(random(0, songs.length))];
-    song.setVolume(1.5, 0.1);
+    song.setVolume(3, 0.1);
     song.play();
     setTimeout(() => {
       song.setVolume(0, 2);
