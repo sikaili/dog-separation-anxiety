@@ -28,6 +28,7 @@ function preload() {
 }
 
 function setup() {
+  frameRate(15);
   cvs = createCanvas(windowWidth, windowHeight);
   cvs.parent('sketch-holder');
   songs.map((a, i) => {
