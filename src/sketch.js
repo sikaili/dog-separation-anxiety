@@ -22,7 +22,7 @@ let add = {
 
 function preload() {
   Array(9).fill('').map((a, i) => {
-    songs[i] = loadSound(`assets/sound${i%5}.m4a`);
+    songs[i] = loadSound(`assets/sound${i%7}.m4a`);
     amplitudes[i] = new p5.Amplitude();
   })
 }
@@ -71,7 +71,7 @@ function draw() {
   textSize(25);
   textAlign(CENTER, CENTER)
   counter.map((a, i) => {
-    text('Whoooafff at ' + a, width / 2, 300 + i * 50)
+    text('Whoooafff at ' + a, width / 2, 100 + i * 50)
   })
   let vol = mic.getLevel();
   // noting is playing ?
@@ -80,12 +80,12 @@ function draw() {
   if (vol > 0.09 && noplay) {
     background(255);
     let song = songs[Math.floor(random(0, songs.length))];
-    song.setVolume(1, 0.1);
+    song.setVolume(1.5, 0.1);
     song.play();
     setTimeout(() => {
       song.setVolume(0, 2);
       setTimeout(() => {
-        song.stop();
+        song.pause();
       }, 3000);
     }, 2000);
 
