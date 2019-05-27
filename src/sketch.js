@@ -72,7 +72,6 @@ function draw() {
   textSize(25);
   textAlign(CENTER, CENTER)
   text('Whoooafff times ' + counter.length, width / 2, 100)
-
   counter.map((a, i) => {
     text('Whoooafff at ' + a, width / 2, 100 + i * 50)
   })
