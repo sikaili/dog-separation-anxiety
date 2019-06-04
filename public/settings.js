@@ -1,3 +1,5 @@
+"use strict";
+
 function touchStarted(e) {
   state !== 1 ? state = 1 : '';
 }
@@ -7,35 +9,32 @@ function touchEnded() {
 }
 
 function keyPressed() {
-
-  keyCode == 32 ? save(cvs, `${frameCount}.tif`) : "";
-
+  keyCode == 32 ? save(cvs, "".concat(frameCount, ".tif")) : "";
 }
 
-
 function addSnapshot(id) {
-  let dumps = [];
-  for (let mm = 0; mm < draws.length; mm++) {
-    let dump = draws[mm].mp.map(function (element) {
+  var dumps = [];
+
+  for (var mm = 0; mm < draws.length; mm++) {
+    var dump = draws[mm].mp.map(function (element) {
       return {
         x: element.x,
         y: element.y
-      }
-    })
+      };
+    });
     dumps.push(dump);
   }
 
   console.log(dumps);
-  localStorage.setItem("canvas-" + id, JSON.stringify(dumps))
+  localStorage.setItem("canvas-" + id, JSON.stringify(dumps));
 }
 
 function removeSnapshot(id) {
   localStorage.removeItem("canvas-" + id);
 }
 
-
 function getSnapshot(id) {
-  let canvas = JSON.parse(localStorage.getItem("canvas-" + id));
+  var canvas = JSON.parse(localStorage.getItem("canvas-" + id));
   return canvas;
 }
 
@@ -43,9 +42,8 @@ function resetAllSnapshots() {
   localStorage.clear();
 }
 
-
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight)
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 function record() {
@@ -56,14 +54,15 @@ function record() {
   capturer.start();
   btn.textContent = 'stop recording';
 
-  btn.onclick = e => {
+  btn.onclick = function (e) {
     capturer.stop();
     capturer.save();
     capturer = null;
     btn.textContent = 'start recording';
     btn.onclick = record;
   };
-  window.onkeypress = e => {
+
+  window.onkeypress = function (e) {
     capturer.stop();
     capturer.save();
     capturer = null;

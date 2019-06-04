@@ -71,13 +71,13 @@ function draw() {
   noStroke();
   textSize(25);
   textAlign(CENTER, CENTER)
-  text('Whoooafff times ' + counter.length, width / 2, 100)
+
+  state == -1 ? text("touch to get ready", width / 2, height / 2) : text('Whoooafff times: ' + counter.length, width / 2, 100)
   counter.map((a, i) => {
-    text('Whoooafff at ' + a, width / 2, 100 + i * 50)
+    text('Whoooafff at ' + a, width / 2, 150 + i * 50)
   })
   let vol = mic.getLevel();
   // noting is playing ?
-  console.log(vol)
   let noplay = songs.every(a => !a.isPlaying())
   if (vol > 0.09 && noplay) {
     background(255);
@@ -91,8 +91,18 @@ function draw() {
       }, 3000);
     }, 2000);
 
-
-    console.log(noplay);
+    const ampdata = {
+      time: Date().slice(15),
+      amp: vol
+    }
+    const options1 = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(ampdata)
+    }
+    fetch('/api', options1);
     counter.push(Date().slice(15));
   }
 
