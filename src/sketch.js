@@ -9,7 +9,7 @@ document.addEventListener(
     passive: false
   }
 );
-
+let cvs
 let counter = [];
 let state = -1;
 let doubleClick, ts = [];
@@ -55,14 +55,13 @@ const micPeak = (vol) => {
     return true
   }
   return false
-
 }
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
-const addTrue = async () => {
-  await delay(5000);
-  add.ok = true;
-};
+// const delay = ms => new Promise(res => setTimeout(res, ms));
+// const addTrue = async () => {
+//   await delay(5000);
+//   add.ok = true;
+// };
 
 
 function draw() {

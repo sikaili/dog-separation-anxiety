@@ -1,8 +1,10 @@
 const express = require('express');
 const Datastore = require('nedb');
 const app = express();
+
 app.listen(3000, () => console.log('listening at 3000'));
 app.use(express.static('public'));
+app.use("/public", express.static('public'));
 app.use("/src", express.static('src'));
 app.use("/assets", express.static('assets'));
 app.use("/libraries", express.static('libraries'));
